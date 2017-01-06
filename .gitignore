@@ -87,3 +87,21 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# papers
+paper/
+
+# data_backup
+code/data_backup
+
+# Glove_data
+code/glove.6B.50d.txt
+
+#runtime_temp
+code/wrong_label.txt
+code/error_sentence.txt
+code/article_done.txt
+
+#data
+code/data/wiki12_articles
+code/data/*.zip

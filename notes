@@ -1,0 +1,244 @@
+#Argument Extraction from News
+
+## Semi-supervised approach for extracting arugment component
+**two-step techique**
+1. Identify the argumentative sentences. Employing classifiers such as LR, RF, SVM, NB, etc.
+features can be divided into features selected fro the state of the art approach and new features that were chosen for the domain of their application.
+###Extraction of the argument sentences###
+**state of the art feature**
+supply information about the position of the sentence inside the document as well as the number of commas and connectives inside the sentence.
+- the number of verbs in the sentence
+- the existence and number of cue words and entities
+- the number of words and adverbs in the sentence
+- average length in characters of the words in the sentence
+**New feature**
+- number of adjectives in the sentence
+- the number of entities in the $n^{th}$ previous sentence
+- the total number of entities from the previous n sentences
+- ratio of distribtions(language models) over unigrams, bigrams, trigrams of words and POS tags
+###argument components identification###
+Apply a CRF (Conditional random field) classifier on a manually corpus.
+features: words of the sentences, gazetteer lists of cue words and lexica of verbs and adjectives that appear most frequently in argumentative sentences of the training data.
+
+##Empirical Evaluation##
+**word2vec model**
+4 word2vec models are build based on document from facebook, twitter, news and blogs. 
+Facebook and Twitter corpora were worse than the others
+the merge of the blogs and news corpora showed a significant increase on the performance of the ''word2vec" model produced.
+**CRFs for arugment extraction**
+traininig materials are manually annotated.
+argument extraction seeks to detect the boundaries of a text fragment that encloses a claim or a premise of an argument.
+classify each word (token) of a sentence as a "boundary" token
+"BILOU" representation seeks to classify each token with a single tag which can be any tag from the following set:
+**B**: This tag represents the start/begin of a segment.
+**I**: This tag marks a token as begining **inside** asegment
+**L**: This tag represents the end of a segment.
+**O**: This tag marks a token as being **outside** a segment.
+**U**: This tag correspond to “unit” segments, which are segments that contain a single token. It is a special case that marks a token that is the beginning and end of a segment simultaneously.
+
+#Argument Extraction fro supporting public policy formulation
+
+Many of the arguments about the relative merits of industrial growth and environmental concerns can retain their structure and the thematically transferred to the new domain.
+
+##Policy formulation and validatiaon
+
+Content is acquired via focused crawling ->  Extract clean text from raw data -> tokenization -> sentence-splitting. each sentence is classifed as **relevant** or **irrelevant** (semantic similarity, domain ontology) -> Consecutive sentences that are classified as positive are joined into a **segment**
+
+The main object is the classification of these segments as being representative of a stance that would also support or oppose the policy being formulated:
+
+- They are senmatically similar to the general statements associated with the policy
+- They are arguments, rather than statements of fact or other types of prose
+- Their polarity (support/opposition) towards the general statements is expressed.
+
+**Need to calculate sematic similarity, identify sturcture(premises/consequences) and polarity**
+
+##Approach##
+
+Shallow approach:
+
+Based on connectives and  other discourse markers in order to define shallow argument patterns.
+
+Hypothesis: future and conditional tenses and moods often indicate conjectures and hypotheses which are commonly used in argumentation techniques. 
+
+Difficulty: future verbal groups are constructed using anxiliary verbs. -> use grammar (Possibly GATE or other grammar)
+
+PoS-tagging -> segmentation (use the mothod mentioned before) -> for each segmen extract features relating to verbal tense/mood and to the apperance of discourse markers. tense and mood are seen both individually and as tense/mood combinations.
+
+5 absolute frequency features which record the matching against
+
+- Justification: maching patterns such as 'becasuse','the reason being', 'due to'
+- Explanation: matchiing pattern such as 'in other words', 'for instance', 
+- deduction: 'as a consequence', 'in accordance with the above', 'proving that'
+- rebuttal: 'despite', 'however'
+- conditionals: 'supposing that', 'in case that'
+
+**Categories of morpho-syntactic features**
+
+- **DM**: Absolute number of occurrence of discourse markers
+- **Rel**: Relative frequency of each of the 6 tense and each of the 6 moods
+- **RCm**: Relative frequency of each tense/mood combination
+- **Bin**: Apperance of each of the 6 tense and eah of the moods
+- **Dom**: Most frequent tense, mood, and tense/mood combination
+
+#Argument Extraction from News, Blogs, and Social Media
+
+###Definition of Argument###
+
+An argument is the part of sentence which contains one or more premises, that serve as a support to claim, which is the conclusion. 
+ 
+###Usage of argument extraction###
+
+1. could help us find out all useful information from "posts" and their replies. 
+
+Nowadays, the way that we communicate has changed. If someone wants to discuss something, or just seeks advice on a specific subject of interest, he/she just “posts” or replies to “posts” in social media, possibly providing arguments about a specific subject. It is also quite possible to post something entirely irrelevant or without any support for a possible claim. Therefore, the automated argument extraction on such corpora is extremely useful in order to acquire all the informative posts/comments (containing arguments) and discard the non-informative ones (the messages without an argument). Such a process can be extremely desirable for a wide range of applications, from supporting the decision making of a potential product buyer, who needs to decide based on product reviews from owners, to summarising discussions.
+
+2. Help voters in deciding which policies and political parties suit them better
+
+##Proposed Approach##
+
+A two-step approach: 
+
+1. Identification of sentences containing arguments or not
+2. Use Conditional Random Field in order to identify the textual fragments that correspond to claims and premises
+
+###Identification of Argumentative Sentences###
+
+Basically a classification problem
+
+**features**: The features that we have examined can be classified in 2 categories: features seleced from the state of the art approaches, and new features that look promising
+
+**The features taken from the state of the art approaches**:
+
+1. Position: indicates the position of the sentence inside the text. {top, top-mid, middle, middle-bot, bottom}
+2. Comma token number: the number of commas inside a sentence (sentences containing argument elements may have a large number of clauses)
+3. Connective number: number of connectives in the sentence
+4. Verb number: the number of the verbs inside a sentence
+5. Number of verbs in passive voice: counting only the verb found in passive voice
+6. Cue words: indicates the existence and the number of cue words.
+7. Domain entities number: indicates the existence and the number of entity mentions of named-entities relevant to the domain.
+8. Adverb number: indicates the number of adverbs in the context of a sentence
+9. Word number: the number of words in the context of a sentence.
+10. Word mean length: a metric of the average length (in characters) of the words in the context of a sentence.
+
+**Additional/complementary feature**
+
+1. Adjective number: the number of adjectives in a sentence
+2. Entities in previous sentences: represents the number of entities in the $n^{th}$ previous sentences
+3. Cumulative number of entities in previous sentences: contains the total number of entities from the previous $n$ sentence. 
+4. Ratio of distributions: create a language model from sentences that contain argument elements and one from sentences that do not contain an argument element. The ratio between these two distributions was used as a feature. -> create 3 LM based on unigrams, bigrams and trigrames
+5. Distributions over unigrams, bigrams, trigrams of part of speech tags: 
+
+###Extraction of Claims and Premiss###
+
+CRFs is a structured prediction algorithm, can also take local context into consideration.
+
+**Feature used**
+
+a) the words in this sentences
+b) gazetteer lists of known entities for the thematic domain related to the arguments we want to extract.
+c) gazetteer lists of cue words and indicator phrases
+d) lexica of verbs and adjectives with TF-IDF between 2 documents (The first document contained all the verbs/adjectives in an argumentative sentence whereas the second one contained the verbs/adjectives from the non-argumentative ones.)
+
+#Discourse level opinion interpretation#
+
+2 types of opinions: sentiment and arguing
+
+**Sentiment**: positive, negative evaluation, emotions and judgments
+**Arguing**: arguing for or against something, arguing that something should or should not be done.
+
+Opinions have a polarity (positive or negative). The target of an opinion is the entity or proposition that the opinion is about.
+
+2 types of relations: same and alternative
+
+**same**: the same, or proposition. 
+**alternative**: the alternative relation holds between targetst that are related by virtue of beiing opposing options in the contex of discourse
+
+#Argument Mining: Extracting Argument from Online Dialogue#
+
+##Corpus and Method##
+
+A large corpus based on several topics: combine Internet Argumetn corpus with dialogues from: http://www.createdebate.com/
+
+Develop a method that can extract high quality argument from a large corpus of argumentative dialogues, in a topic and domain independent way.
+
+##Implicit Markup Hypothesis##
+
+The Impliciit markup hypothesis is composed of several different sub-hypotheses as to how speakers in dialogue may mark argumentative structure.
+
+**Discourse Relation**: the Arg1 and Arg2 of explicit specification, contrast, concession and contingency markers are more likely to contain good argumentative segments.
+
+**Syntactic Properties**: syntactic properties of a clause may indicate good argument segments
+
+**Dialogue Structure**: position in post or the relation to a verbatim quote could influence argument quality
+
+**Semantic Density**: measures of rich content or specificity will indicate good candidates for argument extraction
+
+##Data Sampling, Annotation and Analysis##
+
+Collect annotations. The annotator first check a box if the sentence expressed an argument, and then rated the argument from 0.0 to 1.0
+
+7 annotations per sentence, measure the binary annotaions using Krippendorff's $\alpha$ and the continuous val thiues using the intraclass correlation coefficient (ICC) for each topic.
+
+##Implicit Markup Hypothesis Validation##
+
+There are certain discourse connectives or cue words which can help to signal the existence of arguments, and they seem to suggest that the contingency category may be most useful. but more research using more cue words is necessary to validates this suggestion.
+
+##Argument Quality Regression##
+
+###Semantic Density Features###
+
+**Deictic Pronouns**: These features count the deictic pronouns in the sentence, such as this, that and it.
+
+**Sentence Length**: the number of words
+
+**Word Lenght**: min, max, mean and median of word length. also count of words of lengths 1 to 20 (or longer).
+
+**Speciteller**: result of Speciteller, a tool that assesses the specificity of a sentence in then range of 0 to 1. 
+
+**Kullback-Leiber Divergence**: 
+
+**Lexical N-Grams**: 
+
+###Discourse and Dialogue Features###
+
+**Discourse**: discourse connectives found in the Penn Discourse Treebank. If a discourse connective is not present in the sentence, a NO CONNECTIVE feature is created with value of 1. Otherwise, identify all connectives that are present. For each of them, we derive a set of specific lexical features and a set of generic aggregate features.
+
+**Specific**: first identifying the connective and whether it started the sentence or not. Then, identify the connective's most likely PDTB category based on the frequencies stated in the PDTB.
+
+**aggregate** only consider how many discourse connectives and if and of them started the sentence.
+
+###Syntactic Property Features:###
+
+**part-of-speech N-Grams**: a feature for every unigram, bigram and trigram POS tag sequence in the sentence. value: relative frequency of the n-gram in the sentence
+
+**Syntactic**: 2 types of syntactic features -> one for every internal node, excluding POS tags, of the parse tree. other for each context free production rule in the parse tree. The feature value is the relative frequency of the node or rule within the sentence.
+ 
+**Meta Features**: (1) all features except lexical n-gram. (2) all features that use specific lexical or categorical information. (3) aggregate statistics obtained from the feature extraction process
+
+##Feature Selection##
+
+Sentence length has the highest correlation with the target value in both topics, as does the node:root feature, inversely correlated with length. 
+
+remove all sentence shorter than 4 words.
+
+**frustratingly easy domain adaptation**: transforming the original features into a new augmented feature space where, each feature, is transformed into a genreral feature and a domian specific feature, source or target, depending on the input domain.
+
+#Measuring the Similarity of Sentential Arguments in Dialog#
+
+##Argument Quality Data##
+
+based on sentence (maybe I can try to modify it to fit paragraph)
+
+Extracted all the sentences for all of the posts in each topic to first create a large corpus of topic-sorted sentences.
+
+Refine the AQ model by removing duplicate sentences and rescoring sentences without a verb and with less than 4 dictionary words to AQ=0.
+
+Sample in Swanson  was filterd using PMI, and PMI contributes to AQ.
+
+Manually annotated!!!!!!!!!!!
+
+Threshold: AQ > 0.55 maintained both diversity and quality.
+
+**Task** Define a similarity metric and train a regression model that takes as input two sentential arguments and returns a scalar value that predicts their similarity -> based on semantic textual similarity
+
+

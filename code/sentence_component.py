@@ -173,7 +173,6 @@ class Sentence_component:
         features.extend(SUB)
         features.extend(SEN)
         # features.extend(SEQ)
-        print features
         return features
 
 

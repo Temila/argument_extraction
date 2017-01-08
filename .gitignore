@@ -104,4 +104,6 @@ code/article_done.txt
 
 #data
 code/data/wiki12_articles
+code/data/ted
+code/data/ted_select
 code/data/*.zip

@@ -12,7 +12,7 @@ class sequential_pattern:
         self.nlp = StanfordCoreNLP('http://localhost:9000')
         with open('data/sentiment_words.txt','r') as f:
             self.sentiment_words = f.read()
-        self.claim_sentences, self.None_claim_sentences = self.get_all_claim_sentences()
+        # self.claim_sentences, self.None_claim_sentences = self.get_all_claim_sentences()
         # self.claim_words = self.get_claim_words()
         with open('data/claim_words.txt','r') as f:
             self.claim_words = json.load(f)

@@ -16,13 +16,13 @@ class prefixspan:
     def __init__(self,db):
         self.db = db
         self.length = len(db)
-        print self.length
+        # print self.length
         self.threshold = 0
         self.results = []
 
     def mining_sequence(self, last_tier_sequence_dict, length, max_length = 3):
         l = length + 1
-        print 'processing tier ' + str(l)
+        # print 'processing tier ' + str(l)
         this_tier_sequence_dict = {}
         if last_tier_sequence_dict == {} and length == 0:
             for sentence in self.db:
@@ -63,7 +63,7 @@ class prefixspan:
             self.mining_sequence(this_tier_sequence_dict, l)
 
     def parse_results(self):
-        print 'parsing result'
+        # print 'parsing result'
         result = {}
         for tiers in self.results[1:]:
             for sequence in tiers.keys():
@@ -71,7 +71,7 @@ class prefixspan:
         return sorted(result.items(), key=operator.itemgetter(1), reverse = True)   
 
     def parse_results_unsorted(self):
-        print 'parsing result'
+        # print 'parsing result'
         result = {}
         for tiers in self.results[1:]:
             for sequence in tiers.keys():

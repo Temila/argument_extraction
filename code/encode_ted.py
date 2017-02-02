@@ -13,13 +13,13 @@ sp = sequential_pattern()
 # topics = step_one.topics
 # files = step_one.files
 regex = re.compile('\(.+?\)')
-csvfile = open('data/ted_with_seq.csv','a+')
+csvfile = open('data/ted_with_seq_fixed.csv','a+')
 writer = csv.writer(csvfile, delimiter=',')
 
 with open('data/seq.txt','r') as f:
     sequences = json.load(f)
 
-path = 'data/ted_component.csv'
+path = 'data/ted_component_fixed.csv'
 
 files = glob.glob("data/ted_select/*")
 # for file in files:
@@ -66,11 +66,8 @@ with open(path, 'rb') as f:
         sentence = sentences[int(sentence_index)-1]
         sentence = regex.sub('', sentence)
         sentence = str(sentence).translate(None, string.punctuation)
-        try:
-            encoded_sentence = sp.encode_sentence(sentence,topic)
-            seq_features = match_sequences(encoded_sentence,sequences)
-        except:
-            seq_features = [0, 0, 0, 0, 0, 0, 0]
+        encoded_sentence = sp.encode_sentence(sentence,topic)
+        seq_features = match_sequences(encoded_sentence,sequences)
         seq_features.extend([name,sentence_index])
         writer.writerow(seq_features)
         # print seq_features

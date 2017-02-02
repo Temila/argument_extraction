@@ -4,9 +4,9 @@ from itertools import chain
 from nltk.corpus import wordnet as wn
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.sentiment import util
-from nltk.tokenize import regexp
-from sequential_pattern import sequential_pattern
-from util import match_sequences
+from nltk.tokenize import word_tokenize
+# from sequential_pattern import sequential_pattern
+from util import match_sequences, extract_candidate_chunks
 
 class Sentence_component:
 
@@ -129,8 +129,7 @@ class Sentence_component:
 
     def _subjective_score(self):
         sentim_analyzer = pickle.load(open('sa_subjectivity.pickle'))
-        word_tokenizer = regexp.WhitespaceTokenizer()
-        tokenized_text = [word.lower() for word in word_tokenizer.tokenize(self.sentence)]
+        tokenized_text = [word.lower() for word in word_tokenize(self.sentence)]
         instance_feats = sentim_analyzer.apply_features([tokenized_text], labeled=False)
         return [sentim_analyzer.classifier.prob_classify(instance_feats[0]).prob('subj')]
 
@@ -159,19 +158,31 @@ class Sentence_component:
             seq_features = [0, 0, 0, 0, 0, 0, 0]
         return seq_features
 
+    def _sentence_length_component(self):
+        return [len(word_tokenize(self.sentence))]
+
+    def _sim_between_none_phase(self):
+        np_topic = extract_candidate_chunks(self.topic)[1:]
+        np_sentence = extract_candidate_chunks(self.sentence)
+        return [self.ss.n_similarity(np_topic,np_sentence)]
+
     def extract_features(self):
         features = [self.topic]
         MAS = self._match_at_subject()
         ECS = self._expanded_Cosine_Similarity()
+        SNP = self._sim_between_none_phase()
         CNF = self._coreNLP_Feature()
         SUB = self._subjective_score()
         SEN = self._sentiment_ratio()
+        SLC = self._sentence_length_component()
         # SEQ = self._sequence_match()
         features.extend(MAS)
         features.extend(ECS)
+        features.extend(SNP)
         features.extend(CNF)
         features.extend(SUB)
         features.extend(SEN)
+        features.extend(SLC)
         # features.extend(SEQ)
         return features
 

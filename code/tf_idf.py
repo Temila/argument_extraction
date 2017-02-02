@@ -64,8 +64,11 @@ class TF_IDF:
     def get_tf_idf_score(self):
         tf_idf_dict = {}
         for x in self.tf_score:
-            tf_idf_dict[x] = self.tf_score[x] * self.idf_score[x]
+            try:
+                tf_idf_dict[x] = self.tf_score[x] * self.idf_score[x]
+            except:
+                continue
         return tf_idf_dict
 
-# tfidf = TF_IDF(['this is sentence','this is also sentence','last sentence'],['doc','doc','doc'])
+# tfidf = TF_IDF(['this is sentence','this is also sentence','last sentence'],['sentence','sentence','doc'])
 # print tfidf.get_tf_idf_score()

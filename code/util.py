@@ -5,17 +5,18 @@ import nltk
 from nltk.corpus import stopwords
 import string
 import itertools
+from imblearn.combine import SMOTETomek
 
 def match_sequences(encoded_sentence, sequences):
-    pfs = prefixspan([encoded_sentence])
+    pfs = prefixspan([encoded_sentence],0)
     pfs.mining_sequence({},0)
     result = pfs.parse_results_unsorted()
-    target = [x[0] for x in sequences]
+    target = sequences
     features = []
     length = len(encoded_sentence)
     for sequence in target:
         if sequence in result.keys():
-            features.append(result[sequence] / length)
+            features.append(1)
         else:
             features.append(0)
     return features
@@ -23,6 +24,7 @@ def match_sequences(encoded_sentence, sequences):
 
 def generate_train_test(data_df):
     # data_df = pd.read_csv('data/sentence_component.csv',header = 0)
+    print 'generating train test data'
     true = data_df.loc[data_df['Label'] == 1]
     false = data_df.loc[data_df['Label'] == 0]
     train_true,test_true = _split_data(true)
@@ -30,6 +32,19 @@ def generate_train_test(data_df):
     train = train_false.append(train_true)
     test = test_false.append(test_true)
     return train, test
+
+def balance_data(data_df,features,label):
+    sm = SMOTETomek(n_jobs=8)
+    X = data_df[features]
+    y = data_df[label]
+    y = np.ravel(y)
+    print 'resampling'
+    X_resampled, y_resampled = sm.fit_sample(X,y)
+    X_df = pd.DataFrame(X_resampled,columns = features)
+    y_df = pd.DataFrame(y_resampled,columns = label)
+    new_data_df = X_df.join(y_df)
+    print 'Done'
+    return new_data_df
 
 def _split_data(data_df):
     msk = np.random.rand(len(data_df)) < 0.8
@@ -50,3 +65,32 @@ def extract_candidate_chunks(text, grammar=r'KT:{(<JJ>*<NN.*>+<IN>)?<JJ>*<NN.*>+
     candidates = [' '.join(word for word, pos, chunk in group) for key, group in itertools.groupby(all_chunks, lambda (word,pos,chunk): chunk != 'O') if key]
 
     return [cand for cand in candidates if cand not in stop_words and not all(char in punct for char in cand)]
+
+def read_file(file, cut = False):
+    with open(file,'r') as f:
+        data = f.read().split('\n')
+    result = []
+    for d in data:
+        if cut:
+            result.append(d.split('<_break_>')[:-1])
+        else:
+            result.append(d.split('<_break_>'))
+    return result
+
+def read_essay_txt_file(file_number):
+    file = 'ArgumentAnnotatedEssays/essay{}.txt'.format(str(file_number).zfill(3))
+    with open(file,'r') as f:
+        data = f.read()
+    temp = data.split('\n\n')
+    return temp[0], temp[1]
+
+def read_essay_ann_file(file_number):
+    file = 'ArgumentAnnotatedEssays/essay{}.ann'.format(str(file_number).zfill(3))
+    with open(file,'r') as f:
+        data = f.read()
+    data = data.split('\n')
+    claims = []
+    for line in data:
+        if line.startswith('T'):
+            claims.append(line.split('\t')[2])
+    return claims

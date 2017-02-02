@@ -1,0 +1,59 @@
+Topic id<_break_>Topic<_break_>Data-set
+1<_break_>This house believes that the sale of violent video games to minors should be banned<_break_>train and test
+21<_break_>This house supports the one-child policy of the republic of China<_break_>train and test
+61<_break_>This house would permit the use of performance enhancing drugs in professional sports<_break_>train and test
+81<_break_>This house would make physical education compulsory<_break_>train and test
+101<_break_>This house believes in the use of affirmative action<_break_>train and test
+121<_break_>This house would ban boxing<_break_>train and test
+181<_break_>This house would embrace multiculturalism<_break_>train and test
+221<_break_>This house would ban gambling<_break_>train and test
+323<_break_>This house believes that the right to asylum should not be absolute<_break_>train and test
+381<_break_>This house would abolish the monarchy<_break_>train and test
+641<_break_>This house would abolish all collective bargaining rights claimed by trades unions<_break_>train and test
+642<_break_>This house would ban partial birth abortions<_break_>train and test
+643<_break_>This house believes that countries with an imbalanced male/female ratio skewed towards males should encourage parents to produce girls<_break_>train and test
+644<_break_>This house would introduce year round schooling<_break_>train and test
+645<_break_>This house would subsidize poor communities<_break_>train and test
+646<_break_>This house believes the United States is responsible for Mexico's drugs war<_break_>train and test
+647<_break_>This house believes the US is justified in using force to prevent states from acquiring nuclear weapons<_break_>train and test
+648<_break_>This house believes atheism is the only way<_break_>train and test
+662<_break_>This house believes that democratic governments should require voters to present photo identification at the polling station<_break_>train and test
+663<_break_>This house would reintroduce national service<_break_>train and test
+664<_break_>This house prefers trade to aid<_break_>train and test
+665<_break_>This house believes that housewives should be paid for their work<_break_>train and test
+681<_break_>This house would abolish intellectual property rights<_break_>train and test
+683<_break_>This house believes that wind power should be a primary focus of future energy supply<_break_>train and test
+701<_break_>This house believes that endangered species should be protected<_break_>train and test
+721<_break_>This house believes that Europe should weaken its austerity measures to guarantee its citizens greater social support<_break_>train and test
+742<_break_>This house would limit the right to bear arms<_break_>train and test
+743<_break_>This house believes that bribery is sometimes acceptable<_break_>train and test
+744<_break_>This house would re-engage with Myanmar<_break_>train and test
+761<_break_>This house would build the Keystone XL pipeline<_break_>train and test
+821<_break_>This house believes that opinion polls harm the democratic process<_break_>train and test
+861<_break_>This house believes that Israel should lift the blockade of Gaza<_break_>train and test
+921<_break_>This house believes that the Church of England should be separated from the British state<_break_>train and test
+923<_break_>This house would encourage the creation of private universities in the UK<_break_>train and test
+925<_break_>This house would use foreign aid funds to research and distribute software that allows bloggers and journalists in non-democratic countries to evade censorship and conceal their online activities<_break_>train and test
+941<_break_>This house would only teach abstinence for sex education in schools<_break_>train and test
+943<_break_>This house would remove United States military bases from Japan<_break_>train and test
+945<_break_>This house believes that male infant circumcision is tantamount to child abuse<_break_>train and test
+947<_break_>This house would ban all unsustainable logging<_break_>train and test
+441<_break_>This house believes that open primaries are the most effective method of selecting candidates for elections<_break_>held-out
+442<_break_>This house believes that the Catholic Church is justified in forbidding the use of barrier methods of contraception<_break_>held-out
+443<_break_>This house supports raising the school leaving age to 18<_break_>held-out
+481<_break_>This house believes that the leaking of military documents by Anat Kamm was justified<_break_>held-out
+482<_break_>This house believes that states should not subsidize the growing of tobacco<_break_>held-out
+483<_break_>This house believes that it is sometimes right for the government to restrict freedom of speech<_break_>held-out
+601<_break_>This house would pass the American Jobs Act<_break_>held-out
+602<_break_>This house would fund education using a voucher scheme<_break_>held-out
+621<_break_>This house believes all nations have a right to nuclear weapons<_break_>held-out
+801<_break_>This house believes that Israel's 2008-2009 military operations against Gaza were justified<_break_>held-out
+803<_break_>This house would build high rises for housing<_break_>held-out
+841<_break_>This house would criminalize blasphemy<_break_>held-out
+881<_break_>This house believes that Holocaust denial should be a criminal offence<_break_>held-out
+902<_break_>This house supports direct election of city mayors<_break_>held-out
+926<_break_>This house would disband ASEAN<_break_>held-out
+944<_break_>This house would prohibit burning the stars and stripes<_break_>held-out
+946<_break_>This house would implement playoffs in collegiate level American football<_break_>held-out
+961<_break_>This house believes social deprivation causes crime<_break_>held-out
+942<_break_>This house would enforce term limits on the legislative branch of government<_break_>held-out

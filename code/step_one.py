@@ -5,7 +5,7 @@ class Step_one:
     def __init__(self):
         # reload(sys)
         # sys.setdefaultencoding('utf8') Constitutional_monarchy
-        self.files = glob.glob("data/wiki12_articles/Conscription")
+        self.files = glob.glob("data/wiki12_articles/*")
         self.wb = xlrd.open_workbook('data/2014_7_18_ibm_CDCdata.xls')
         self.topics, self.CDCs = self._get_topics_for_articles()
 

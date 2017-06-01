@@ -30,7 +30,14 @@ def generate_train_test(data_df):
     train_true,test_true = _split_data(true)
     train_false,test_false = _split_data(false)
     train = train_false.append(train_true)
-    test = test_false.append(test_true)
+    length = len(test_true)
+    test = test_false[:length].append(test_true)
+    return train, test
+
+def leave_one_topic_out_train_test(data_df, topic):
+    print 'generating train test data for leave one topic out test'
+    test = data_df.loc[data_df['Topic'] == topic]
+    train = data_df.loc[data_df['Topic'] != topic]
     return train, test
 
 def balance_data(data_df,features,label):
@@ -45,6 +52,19 @@ def balance_data(data_df,features,label):
     new_data_df = X_df.join(y_df)
     print 'Done'
     return new_data_df
+
+def generate_train_test_2(data_df,size,n_round):
+    start = (n_round - 1) * size
+    end  = n_round * size
+    true = data_df.loc[data_df['Label'] == 1]
+    all_false = data_df.loc[data_df['Label'] == 0]
+    false = all_false[start:end]
+    train_true,test_true = _split_data(true)
+    train_false,test_false = _split_data(false)
+    train = train_false.append(train_true)
+    test = test_false.append(test_true)
+    return train, test
+
 
 def _split_data(data_df):
     msk = np.random.rand(len(data_df)) < 0.8
@@ -92,5 +112,16 @@ def read_essay_ann_file(file_number):
     claims = []
     for line in data:
         if line.startswith('T'):
+            claims.append(line.split('\t')[2])
+    return claims
+
+def read_essay_ann_file_no_premise(file_number):
+    file = 'ArgumentAnnotatedEssays/essay{}.ann'.format(str(file_number).zfill(3))
+    with open(file,'r') as f:
+        data = f.read()
+    data = data.split('\n')
+    claims = []
+    for line in data:
+        if line.startswith('T') and 'Claim' in line:
             claims.append(line.split('\t')[2])
     return claims

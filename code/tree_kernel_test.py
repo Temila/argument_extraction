@@ -1,8 +1,11 @@
-import tree_kernels 
-import tree 
+from util import read_file
 
-l=0.1 # kernel parameter 
-dat = tree.Dataset() 
-dat.loadFromFilePrologFormat("inputdataset.txt")
-k = tree_kernels.KernelSST(l)
-k.printKernelMatrix(dat)
+claims_raw = read_file('New_data/claims.txt', cut=True)
+claims = [x[1] for x in claims_raw]
+non_claims_raw = read_file('New_data/non_claims.txt')
+non_claims = []
+for x in non_claims_raw:
+    try:
+        non_claims.append(x[1])
+    except:
+        pass

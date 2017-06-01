@@ -22,6 +22,7 @@ class Sentence_component:
         self.subjects = self._get_subjects()
         self.pos_tags = [x['pos'] for x in self.sentence_output['sentences'][0]['tokens']]
         self.named_entities = [x['ner'] for x in self.sentence_output['sentences'][0]['tokens']]
+        self.parse_tree = self.sentence_output['sentences'][0]['parse']
         with open('data/seq.txt','r') as f:
             self.sequences = json.load(f)
 
@@ -186,8 +187,5 @@ class Sentence_component:
         # features.extend(SEQ)
         return features
 
-
-# from sematic_similarity import Sematic_Similarity
-
-# ss = Sematic_Similarity()
-# sc = Sentence_component('Video game addiction is excessive or compulsive use of computer and video games that interferes with daily life','video game',ss)
+    def get_parse_tree(self):
+        return self.parse_tree

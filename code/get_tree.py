@@ -24,12 +24,6 @@ class GetTree:
     def save_data(self,file):
         file.write('\n'.join(self.data))
 
-    # def get_subset_tree(self,sentence_tree):
-    #     pass
-
-    # def get_sub_tree(self,sentence_tree):
-    #     pass
-
     def generate_train_test(self):
         with open('New_data/tree_claim.txt','r') as f:
             data_true = f.read().split('\n')
@@ -45,6 +39,16 @@ class GetTree:
         test_data.extend(test_data_false)
         return train_data,test_data
 
+    def generate_train(self):
+        with open('New_data/tree_claim.txt','r') as f:
+            data_true = f.read().split('\n')
+        with open('New_data/tree_non_claim.txt','r') as f:
+            data_false = f.read().split('\n')
+        data = []
+        data.extend(data_true)
+        data.extend(data_false)
+        return data
+
 
     def _split(self, data, ratio):
         data = np.array(data)
@@ -54,18 +58,13 @@ class GetTree:
         return train_data, test_data
 
 gt = GetTree()
-train_data,test_data = gt.generate_train_test()
-with open('New_data/tree_train.txt','w') as f:
-    f.write('\n'.join(train_data))
-with open('New_data/tree_test.txt','w') as f:
-    f.write('\n'.join(test_data))
-# claims = read_file('New_data/claims.txt')
-# for claim in claims[:3000]:
-#     try:
-#         tree = gt.constituency_parse_tree(claim[1])
-#     except:
-#         continue
-#     gt.form_data(tree,1)
-# with open('New_data/tree_claim.txt','w') as f:
-#     gt.save_data(f)
 
+data = gt.generate_train()
+with open('New_data/tree_all.train', 'w') as f:
+    f.write('\n'.join(data))
+
+# train_data,test_data = gt.generate_train_test()
+# with open('New_data/tree.train','w') as f:
+#     f.write('\n'.join(train_data))
+# with open('New_data/tree.test','w') as f:
+#     f.write('\n'.join(test_data))

@@ -44,7 +44,7 @@ watchlist = [(dtest, 'eval'), (dtrain, 'train')]
 label = dtrain.get_label()
 ratio = float(np.sum(label == 0)) / np.sum(label==1)
 param['scale_pos_weight'] = ratio
-num_round = 100
+num_round = 10
 
 bst = xgb.train(param, dtrain, num_round)
 ptrain = bst.predict(dtrain, output_margin=True)

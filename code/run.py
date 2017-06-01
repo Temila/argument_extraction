@@ -7,35 +7,50 @@ import csv, sys, threading
 
 reload(sys)
 sys.setdefaultencoding('utf8')
-# step_one = Step_one()
-# topics = step_one.topics
-# articles = step_one.files
-non_claims = read_file('New_data/non_claims_random.txt')
+claims = read_file('New_data/non_claims.txt')
 ss = Sematic_Similarity()
 
-csvfile = open('New_data/sentence_component_non_with_index.csv','a+')
-writer = csv.writer(csvfile, delimiter=',')
+sc = Sentence_component('Violent video games can increase children\'s aggression','The sale of violent video games to minors should be banned',ss)
+features = sc.extract_features()
+print features
 
-count = 0
-for claim in non_claims:
-    count += 1
-    sentence_number = count
-    print 'processing sentence {}'.format(str(sentence_number))
-    if not len(claim) == 2:
-        print 'error occurred! Topic or Sentence is miss'
-        continue
-    topic = claim[0]
-    sentence = claim[1]
-    try:
-        sc = Sentence_component(sentence,topic,ss)
-        features = sc.extract_features()
-        features.append(0)
-        features.append(count-1)
-        writer.writerow(features)
-    except:
-        print 'error occurred! Fail to extract features'
-        continue
-    print 'Done'
+# csvfile = open('New_data/sentence_component_non_with_index.csv','a+')
+# writer = csv.writer(csvfile, delimiter=',')
+
+# def constituency_parse_tree(sentence):
+#     return " ".join(nlp.annotate(sentence, properties={
+#         'annotators': 'parse',
+#         'outputFormat': 'json'
+#     })['sentences'][0]['parse'].replace('\n','').split())
+
+# def question_detect(sentence):
+#     try:
+#         tree = constituency_parse_tree(sentence)
+#         if 'WHNP' in tree or 'WHADVP' in tree or'WHADJP' in tree:
+#             if 'SQ' in tree and '?' in tree and len(word_tokenize(sentence)) > 3:
+#                 print sentence
+#                 count += 1
+#     except:
+#         pass
+
+# count = 0
+# for claim in claims:
+#     count += 1
+#     sentence_number = count
+#     # print 'processing sentence {}'.format(str(sentence_number))
+#     if not len(claim) == 2:
+#         # print 'error occurred! Topic or Sentence is miss'
+#         continue
+#     topic = claim[0]
+#     sentence = claim[1]
+#     try:
+#         question_detect(sentence)
+#         # features.append(count-1)
+#         # writer.writerow(features)
+#     except:
+#         # print 'error occurred! Fail to extract features'
+#         continue
+#     # print 'Done'
 # with open('article_done.txt','r') as f:
 
 #     articles_done = f.read().split('\n')[:-1]

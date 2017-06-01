@@ -9,14 +9,15 @@ features = []
 for i in range(134):
     features.append(str(i+1))
 label = ['Label']
-data_df = balance_data(data_df_raw,features,label)
-train_df, test_df = generate_train_test(data_df)
+# data_df = balance_data(data_df_raw,features,label)
+train_df, test_df = generate_train_test(data_df_raw)
+train_df = balance_data(train_df,features,label)
 dtrain = xgb.DMatrix(train_df[features],train_df[label])
 dtest = xgb.DMatrix(test_df[features],test_df[label])
-param = {'max_depth':10, 'eta':0.1, 'silent':1, 'objective':'binary:logistic'}
+param = {'max_depth':10, 'eta':0.1, 'silent':1, 'objective':'binary:logistic','n_estimators':100}
 watchlist = [(dtest, 'eval'), (dtrain, 'train')]
-label = dtrain.get_label()
-ratio = float(np.sum(label == 0)) / np.sum(label==1)
+labels = dtrain.get_label()
+ratio = float(np.sum(labels == 0)) / np.sum(labels==1)
 param['scale_pos_weight'] = ratio
 num_round = 100
 # res = xgb.cv(param, dtrain, num_round, nfold=10,
@@ -28,7 +29,7 @@ ptrain = bst.predict(dtrain, output_margin=True)
 ptest  = bst.predict(dtest, output_margin=True)
 dtrain.set_base_margin(ptrain)
 dtest.set_base_margin(ptest)
-bst = xgb.train( param, dtrain, 1)
+bst.save_model('New_data/claim_classifier_sequence.model')
 preds = bst.predict(dtest)
 labels = dtest.get_label()
 print ('error=%f' % ( sum(1 for i in range(len(preds)) if int(preds[i]>0.5)!=labels[i]) /float(len(preds))))
@@ -38,9 +39,10 @@ for i in range(len(features)):
 f.close()
 importance = bst.get_fscore(fmap='xgb.fmap')
 importance = sorted(importance.items(), key=operator.itemgetter(1))
-print importance
 
-print 'number of test samples: {}'.format(len(labels), reverse=True)
+# print importance
+
+# print 'number of test samples: {}'.format(len(labels), reverse=True)
 
 print 'calculate recall'
 count = 0.0

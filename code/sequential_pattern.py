@@ -162,7 +162,6 @@ class sequential_pattern:
         return encoded_sentence
 
 
-# sp = sequential_pattern()
-# data = sp.encode_None_CDC_words()
-# with open('New_data/encodec_none_claims.txt','w') as f:
-#     json.dump(data,f)
+sp = sequential_pattern()
+data = sp.encode_sentence('Violent video games can increase children\'s aggression','The sale of violent video games to minors should be banned')
+print data

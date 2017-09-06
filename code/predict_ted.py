@@ -15,13 +15,16 @@ def generate_sub_sentence(sentence):
     r = re.compile(r'[{}]'.format(re.escape(punctuation)))
     chunck_by_punc = r.split(sentence)
     candidates = [x for x in chunck_by_punc if len(x.split(' ')) >= min_size]
+    for can in candidates:
+        if 'that' in can:
+            candidates.extend(can.split('that'))
     return candidates
 
 ss = Sematic_Similarity()
 #load xgboost model
 
 bst = xgb.Booster(model_file='New_data/claim_classifier_2.model')
-topic = 'can we build a AI without losing control over it'
+topic = 'fear'
 with open('essay001.txt','r') as f:
     data = f.read()
 sentences = sent_tokenize(data)
@@ -45,6 +48,7 @@ preds = bst.predict(dtest)
 detected_claims_raw = {}
 for i in range(len(preds)):
     if preds[i] > 0.5:
+        print 
         sen = sentences[int(match_list[str(i+1)])-1]
         if sen in detected_claims_raw.keys():
             last = detected_claims_raw[sen]

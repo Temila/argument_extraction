@@ -31,7 +31,7 @@ features = ['Mas','Ecs_1','Ecs_2','Ecs_3','Snp','Cnf_1','Cnf_2','Cnf_3','Cnf_4',
 label = ['Label']
 # print data_df
 train_df, test_df = generate_train_test(data_df)
-# train_df = balance_data(train_df,features,label)
+train_df = balance_data(train_df,features,label)
 # dtrain = xgb.DMatrix(data_df[features],data_df[label])
 dtrain = xgb.DMatrix(train_df[features],train_df[label])
 dtest = xgb.DMatrix(test_df[features],test_df[label])
@@ -40,14 +40,14 @@ param = {'max_depth':10, 'eta':0.1, 'silent':1, 'objective':'binary:logistic','n
 label = dtrain.get_label()
 ratio = float(np.sum(label == 0)) / np.sum(label==1)
 param['scale_pos_weight'] = ratio
-num_round = 1000
+num_round = 500
 # res = xgb.cv(param, dtrain, num_round, nfold=10,
 #        metrics={'auc'}, seed = 0,
 #        early_stopping_rounds=10,
 #        callbacks=[xgb.callback.print_evaluation(show_stdv=True)])
 print 'training'
 bst = xgb.train(param, dtrain, num_round)
-bst.save_model('New_data/claim_classifier_feature_unbalance.model')
+# bst.save_model('New_data/claim_classifier_feature_unbalance.model')
 # ptrain = bst.predict(dtrain, output_margin=True)
 # ptest  = bst.predict(dtest, output_margin=True)
 # dtrain.set_base_margin(ptrain)

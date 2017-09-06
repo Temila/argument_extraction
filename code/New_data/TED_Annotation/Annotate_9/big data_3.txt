@@ -1,0 +1,85 @@
+Now, the point here is that more data doesn't just let us see more, more of the same thing we were looking at.
+
+It allows us to see better.
+
+It allows us to see different.
+
+It is true that there is a lot of hype around the term, and that is very unfortunate, because big data is an extremely important tool by which society is going to advance.
+
+In the past, we used to look at small data and think about what it would mean to try to understand the world, and now we have a lot more of it, more than we ever could before.
+
+What we find is that when we have a large body of data, we can fundamentally do things that we couldn't do when we only had smaller amounts.
+
+Big data is important, and big data is new, and when you think about it, the only way this planet is going to deal with its global challenges u2014 to feed people, supply them with medical care, supply them with energy, electricity, and to make sure they're not burnt to a crisp because of global warming u2014 is because of the effective use of data.
+
+We still store information on discs, but now we can store a lot more information, more than ever before.
+
+Searching it is easier.
+
+Copying it easier.
+
+Sharing it is easier.
+
+Processing it is easier.
+
+And what we can do is we can reuse this information for uses that we never even imagined when we first collected the data.
+
+In this respect, the data has gone from a stock to a flow, from something that is stationary and static to something that is fluid and dynamic.
+
+By contrast, all of the files that Edward Snowden took from the National Security Agency in the United States fits on a memory stick the size of a fingernail, and it can be shared at the speed of light.
+
+Now, one reason why we have so much data in the world today is we are collecting things that we've always collected information on, but another reason why is we're taking things that have always been informational but have never been rendered into a data format and we are putting it into data.
+
+If you have a cell phone, and that cell phone has GPS, but even if it doesn't have GPS, it can record your information.
+
+These are the sorts of things we can do when we datafy more aspects of our lives.
+
+You can do things that you couldn't do before.
+
+Memory is cheaper.
+
+Algorithms are faster.
+
+Processors are better.
+
+It's because we changed the nature of the problem.
+
+Machine learning is at the basis of many of the things that we do online: search engines, Amazon's personalization algorithm, computer translation, voice recognition systems.
+
+It will improve our lives, but there are problems that we need to be conscious of, and the first one is the idea that we may be punished for predictions, that the police may use big data for their purposes, a little bit like "Minority Report."
+
+Now, it's a term called predictive policing, or algorithmic criminology, and the idea is that if we take a lot of data, for example where past crimes have been, we know where to send the patrols.
+
+We may have algorithms that are likely to predict what we are about to do, and we may be held accountable before we've actually acted.
+
+Privacy was the central challenge in a small data era.
+
+In the big data age, the challenge will be safeguarding free will, moral choice, human volition, human agency.
+
+There is another problem: Big data is going to steal our jobs.
+
+Big data and algorithms are going to challenge white collar, professional knowledge work in the 21st century in the same way that factory automation and the assembly line challenged blue collar labor in the 20th century.
+
+And that person's job, as well as an entire fleet of professionals like that person, is going to find that their jobs are radically changed or actually completely eliminated.
+
+Now, we like to think that technology creates jobs over a period of time after a short, temporary period of dislocation, and that is true for the frame of reference with which we all live, the Industrial Revolution, because that's precisely what happened.
+
+But we forget something in that analysis: There are some categories of jobs that simply get eliminated and never come back.
+
+So we're going to need to be careful and take big data and adjust it for our needs, our very human needs.
+
+We have to be the master of this technology, not its servant.
+
+We are just at the outset of the big data era, and honestly, we are not very good at handling all the data that we can now collect.
+
+It's not just a problem for the National Security Agency.
+
+Businesses collect lots of data, and they misuse it too, and we need to get better at this, and this will take time.
+
+This is a tool, but this is a tool that, unless we're careful, will burn us.
+
+Big data is going to transform how we live, how we work and how we think.
+
+It is going to help us manage our careers and lead lives of satisfaction and hope and happiness and health, but in the past, we've often looked at information technology and our eyes have only seen the T, the technology, the hardware, because that's what was physical.
+
+Humanity can finally learn from the information that it can collect, as part of our timeless quest to understand the world and our place in it, and that's why big data is a big deal.

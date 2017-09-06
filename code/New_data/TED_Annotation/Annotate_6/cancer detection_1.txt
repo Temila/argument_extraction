@@ -1,0 +1,11 @@
+One out of three people sitting in this audience will be diagnosed with some type of cancer, and one out of four will die because of it.
+
+Not only did that cancer diagnosis change the life of our family, but that process of going back and forth with new tests, different doctors describing symptoms, discarding diseases over and over, was stressful and frustrating, especially for my aunt.
+
+However, the problem with microRNAs is that we cannot use existing DNA-based technology to detect them in a reliable way, because they are very short sequences of nucleotides, much smaller than DNA.
+
+Since we believe early cancer detection should really be democratized, this entire solution costs at least 50 times less than current available methods, and we know that the community can help us accelerate this even more, so we're making the design of the device open-source.
+
+(Applause)  Let me say very clearly that we are at the very early stages, but so far, we have been able to successfully identify the microRNA pattern of pancreatic cancer, lung cancer, breast cancer and hepatic cancer.
+
+Today, cancer detection happens mainly when symptoms appear.

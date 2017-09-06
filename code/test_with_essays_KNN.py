@@ -122,5 +122,5 @@ for i in range(1,403):
     else:
         f = 2*(a*r)/(a+r)
     print 'accuracy: {}, recall: {}, F1 score: {}'.format(str(a),str(r),str(f))
-    with open('New_data/result/test_with_essay/result_KNN_group.csv','a+') as file:
-        file.write('{},{},{}\n'.format(str(a),str(r),str(f)))
+    # with open('New_data/result/test_with_essay/result_KNN_group.csv','a+') as file:
+    #     file.write('{},{},{}\n'.format(str(a),str(r),str(f)))

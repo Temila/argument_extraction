@@ -71,8 +71,17 @@ def train_2():
         neighs.append(neigh)
     return neighs
 
+def train_3():
+    features = ['Mas','Ecs_1','Ecs_2','Ecs_3','Snp','Cnf_1','Cnf_2','Cnf_3','Cnf_4','Sub','Sen','Slc']
+    label = ['Label']
+    train_df = pd.read_csv('New_data/csv/data_2.csv',header = 0)
+    # train_df = balance_data(data_df,features,label)
+    neigh = KNeighborsClassifier(n_neighbors=48, algorithm='auto')
+    neigh.fit(train_df[features],train_df[label]) 
+    return [neigh]
+
 print 'training model'
-bsts = train_2() 
+bsts = train_3() 
 
 for i in range(1,403):
     topic, data = read_essay_txt_file(i)
@@ -104,7 +113,7 @@ for i in range(1,403):
         preds = np.add(preds,l)
     detected_claims_raw = []
     for i in range(len(preds)):
-        if preds[i] > 14:
+        if preds[i] > float(len(bsts)) / 2:
             detected_claims_raw.append(sentences[int(match_list[str(i+1)])-1])
     detected_claims = list(set(detected_claims_raw))
     # print detected_claims
@@ -121,5 +130,5 @@ for i in range(1,403):
     else:
         f = 2*(a*r)/(a+r)
     print 'accuracy: {}, recall: {}, F1 score: {}'.format(str(a),str(r),str(f))
-    with open('New_data/result/test_with_essay/result_KNN_group_np.csv','a+') as file:
+    with open('New_data/result/test_with_essay/result_KNN_group_np_unbalance.csv','a+') as file:
         file.write('{},{},{}\n'.format(str(a),str(r),str(f)))

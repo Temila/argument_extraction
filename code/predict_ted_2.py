@@ -17,6 +17,9 @@ def generate_sub_sentence(sentence):
     r = re.compile(r'[{}]'.format(re.escape(punctuation)))
     chunck_by_punc = r.split(sentence)
     candidates = [x for x in chunck_by_punc if len(x.split(' ')) >= min_size]
+    for can in candidates:
+        if 'that' in can:
+            candidates.extend(can.split('that'))
     return candidates
 
 ss = Sematic_Similarity()
@@ -26,7 +29,7 @@ bsts = []
 for file in files:
     bsts.append(xgb.Booster(model_file=file))
 print 'model loaded'
-topic = 'can we build an AI without losing control over it'
+topic = 'video games'
 with open('essay001.txt','r') as f:
     data = f.read()
 sentences = sent_tokenize(data)

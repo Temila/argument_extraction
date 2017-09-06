@@ -1,0 +1,9 @@
+,,precision,recall,f1
+No,XGB-group,81.62%,73.40%,76.14%
+ranking,XGB-SMOTETomek,81.49%,75.91%,77.46%
+component,KNN-group,76.44%,48.84%,57.57%
+,KNN-SMOTETomek,77.00%,37.58%,48.53%
+rank,XGB-group,78.45%,59.05%,65.01%
+with,XGB-SMOTETomek,78.48%,60.91%,66.35%
+relatedness,KNN-group,68.84%,23.94%,33.58%
+score,KNN-SMOTETomek,72.74%,28.22%,38.80%

@@ -1,0 +1,11 @@
+So, if you're in the audience today, or maybe you're watching this talk in some other time or place, you are a participant in the digital rights ecosystem.
+
+Whether you're an artist, a technologist, a lawyer or a fan, the handling of copyright directly impacts your life.
+
+Well, most rights owners, instead of blocking, will allow the copy to be published.
+
+Rights management is no longer simply a question of ownership, it's a complex web of relationships and a critical part of our cultural landscape.
+
+why has no one ever solved this problem before?
+
+It's because it's a big problem, and it's complicated and messy.

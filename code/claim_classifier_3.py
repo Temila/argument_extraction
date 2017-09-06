@@ -26,9 +26,11 @@ def calculate_recall(preds, labels):
                 b += 1
     return float(b)/float(a)
 
-data_df_raw = pd.read_csv('New_data/csv/data_2.csv',header = 0)
+data_df_raw = pd.read_csv('New_data/csv/sequences_data_full.csv',header = 0)
 data_df, data_test = generate_train_test(data_df_raw)
-features = ['Mas','Ecs_1','Ecs_2','Ecs_3','Snp','Cnf_1','Cnf_2','Cnf_3','Cnf_4','Sub','Sen','Slc']
+features = []
+for i in range(134):
+    features.append(str(i+1))
 label = ['Label']
 bsts = []
 for i in range(1,28):

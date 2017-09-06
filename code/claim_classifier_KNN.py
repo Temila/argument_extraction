@@ -38,10 +38,15 @@ def mean(numbers):
 data_df_raw = pd.read_csv('New_data/csv/data_2.csv',header = 0)
 features = ['Mas','Ecs_1','Ecs_2','Ecs_3','Snp','Cnf_1','Cnf_2','Cnf_3','Cnf_4','Sub','Sen','Slc']
 label = ['Label']
+# data_df_raw = pd.read_csv('New_data/csv/sequences_data_full.csv',header = 0)
+# features = []
+# for i in range(134):
+#     features.append(str(i+1))
+# label = ['Label']
 f1 = []
+train_df, test_df = generate_train_test(data_df_raw)
+train_df = balance_data(train_df,features,label)
 for n in range(3,61):
-    train_df, test_df = generate_train_test(data_df_raw)
-    train_df = balance_data(train_df,features,label)
     neigh = KNeighborsClassifier(n_neighbors=n, algorithm='auto')
     neigh.fit(train_df[features],train_df[label]) 
     preds = neigh.predict_proba(test_df[features])
